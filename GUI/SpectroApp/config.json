@@ -1,0 +1,120 @@
+{
+  "images_dir": "C:\\Users\\celia\\OneDrive\\Bureau\\Universit\u00e9\\cours universit\u00e9\\cours M2\\Semestre 10\\Campagne Novembre",
+  "hgar_path": "C:\\Users\\celia\\OneDrive\\Bureau\\Universit\u00e9\\cours universit\u00e9\\cours M2\\Semestre 10\\Campagne Novembre\\251119_HgArlines_noND_aqc5s_WLcent800_150grating.tif",
+  "excel_path": "C:\\Users\\celia\\OneDrive\\Bureau\\Universit\u00e9\\cours universit\u00e9\\cours M2\\Semestre 10\\Campagne Novembre\\Final.xlsx",
+  "pulses_dir": "C:\\Users\\celia\\OneDrive\\Bureau\\Universit\u00e9\\cours universit\u00e9\\cours M2\\Semestre 10\\Campagne Novembre",
+  "workspace": "C:\\Users\\celia\\OneDrive\\Bureau\\Universit\u00e9\\cours universit\u00e9\\cours M2\\Semestre 10\\Campagne Novembre",
+  "structure_path": "C:\\Users\\celia\\OneDrive\\Bureau\\Universit\u00e9\\cours universit\u00e9\\cours M2\\Semestre 10\\Campagne Novembre\\251102_EstimateStructureCoordinates.xlsx",
+  "flat_angle_path": "C:\\Users\\celia\\OneDrive\\Bureau\\Universit\u00e9\\cours universit\u00e9\\cours M2\\Semestre 10\\Campagne Novembre\\SidescatterFibrePos_Config3_d.xlsx",
+  "flat_angle_paths": [
+    "C:\\Users\\celia\\OneDrive\\Bureau\\Universit\u00e9\\cours universit\u00e9\\cours M2\\Semestre 10\\Campagne Novembre\\SidescatterFibrePos_Config3_d.xlsx",
+    "C:\\Users\\celia\\OneDrive\\Bureau\\Universit\u00e9\\cours universit\u00e9\\cours M2\\Semestre 10\\Campagne Novembre\\SidescatterFibrePos_Config3_e.xlsx",
+    "C:\\Users\\celia\\OneDrive\\Bureau\\Universit\u00e9\\cours universit\u00e9\\cours M2\\Semestre 10\\Campagne Novembre\\SidescatterFibrePos_Config3_f.xlsx"
+  ],
+  "campaign_id": "07a0664979b3",
+  "cache_override": "C:\\Users\\celia\\OneDrive\\Bureau\\Universit\u00e9\\cours universit\u00e9\\cours M2\\Semestre 10\\Campagne Novembre\\cache_8e4bd9f707",
+  "params": {
+    "N_FIBERS": 80,
+    "HALF_WIDTH": 6,
+    "BG_FILTER_SIZE": 55,
+    "PEAK_MIN_PROM": 50.0,
+    "WL_SHIFT_NM": 0.0,
+    "WL_METHOD": "auto",
+    "BG_COLUMN_GAP": 4,
+    "SUBTRACT_BG": true,
+    "USE_INT_CALIBRATION": false,
+    "USE_ND_CORRECTION": true,
+    "USE_WL_AXIS": true,
+    "SHOT_ROTATION": 0,
+    "CALIB_ROTATION": 0,
+    "FIBER_MODE": "auto",
+    "FIBER_AUTO_N_SCIENCE": 5,
+    "PLOT_FONT_SIZE": 13,
+    "PLOT_TEMPLATE": "plotly_white"
+  },
+  "wl_calib_pairs": [
+    [
+      733,
+      730.04
+    ],
+    [
+      1359,
+      809.32
+    ],
+    [
+      1409,
+      815.56
+    ],
+    [
+      1871,
+      871.66
+    ],
+    [
+      274,
+      667.73
+    ],
+    [
+      481,
+      696.54
+    ],
+    [
+      557,
+      706.72
+    ],
+    [
+      617,
+      714.7
+    ],
+    [
+      797,
+      738.4
+    ],
+    [
+      899,
+      750.925
+    ],
+    [
+      993,
+      763.51
+    ],
+    [
+      1063,
+      772.38
+    ],
+    [
+      1242,
+      794.82
+    ],
+    [
+      1289,
+      800.62
+    ],
+    [
+      1498,
+      826.45
+    ],
+    [
+      1622,
+      841.64
+    ],
+    [
+      1709,
+      852.14
+    ],
+    [
+      2212,
+      912.3
+    ],
+    [
+      2298,
+      922.45
+    ]
+  ],
+  "nd_files": {
+    "2": "C:\\Users\\celia\\OneDrive\\Bureau\\Universit\u00e9\\cours universit\u00e9\\cours M2\\Semestre 10\\Campagne Mai\\nex20x-a_data.xlsx"
+  },
+  "nd_column": "side-SRS ND",
+  "abs_cal": null,
+  "display_units": "adu",
+  "abs_cal_params": null
+}
