@@ -19,22 +19,31 @@ The key conceptual point: the ND filter and every other unmodeled element of the
 
 The calibration image (source on) and background image (source off) are subtracted pixel-by-pixel:
 
-$$
-I_{\text{corr}}(x,y) = I_{\text{LED}}(x,y) - I_{\text{bg}}(x,y) \tag{1}
-$$ 
+<div align="center">
 
+$$I_{\text{corr}}(x,y) = I_{\text{LED}}(x,y) - I_{\text{bg}}(x,y) \qquad (1)$$
+
+</div>
 
 Negative values from the subtraction are clipped to zero. The image is then rotated 90° counterclockwise to match the orientation used to define the fiber-reference traces.
 
 For each of the 80 fibers, the trace center is parametrized as a function of the horizontal camera coordinate $x$. Integration boundaries between adjacent fibers are placed halfway between neighboring trace centers, and the signal is integrated vertically over 95% of each fiber's assigned region, leaving a small dead zone between neighboring integration bands to avoid cross-talk:
 
-$$C_{f,j} = \sum_k w_{f,j,k}\, I_{\text{corr}}(x_j, y_k) \tag{2}$$
+<div align="center">
+
+$$C_{f,j} = \sum_k w_{f,j,k}\, I_{\text{corr}}(x_j, y_k) \qquad (2)$$
+
+</div>
 
 where $w_{f,j,k}$ is the fractional (sub-pixel) contribution of vertical pixel $k$ to fiber $f$'s integration region at column $j$.
 
 The integrated signal is converted to a count rate using the calibration-image exposure time $t_{\text{exp}}$:
 
-$$\dot C_{f,j} = \frac{C_{f,j}}{t_{\text{exp}}} \tag{3}$$
+<div align="center">
+
+$$\dot C_{f,j} = \frac{C_{f,j}}{t_{\text{exp}}} \qquad (3)$$
+
+</div>
 
 The horizontal camera coordinate $x_j$ is converted to wavelength $\lambda_j$ using the mercury-lamp wavelength calibration, which also provides the spectral bin width $\Delta\lambda_j$ for each camera column.
 
@@ -44,23 +53,43 @@ The power meter is fixed at a reference setting of 750 nm, while the infrared so
 
 **Normalized source spectrum**, measured independently with the fiber spectrometer:
 
-$$s(\lambda) = \frac{S(\lambda)}{\int S(\lambda')\, d\lambda'} \tag{4}$$
+<div align="center">
+
+$$s(\lambda) = \frac{S(\lambda)}{\int S(\lambda')\, d\lambda'} \qquad (4)$$
+
+</div>
 
 **Spectrum-weighted effective responsivity**, using the detector's wavelength-dependent responsivity $R(\lambda)$ [A/W]:
 
-$$R_{\text{eff}} = \int s(\lambda)\, R(\lambda)\, d\lambda \tag{5}$$
+<div align="center">
+
+$$R_{\text{eff}} = \int s(\lambda)\, R(\lambda)\, d\lambda \qquad (5)$$
+
+</div>
 
 **Corrected optical power** on the power-meter aperture:
 
-$$P_{\text{PM},f}^{\text{true}} = P_{\text{PM},f}^{\text{display}} \cdot \frac{R(750\,\text{nm})}{R_{\text{eff}}} \tag{6}$$
+<div align="center">
+
+$$P_{\text{PM},f}^{\text{true}} = P_{\text{PM},f}^{\text{display}} \cdot \frac{R(750\,\text{nm})}{R_{\text{eff}}} \qquad (6)$$
+
+</div>
 
 **Geometric projection onto the fiber core.** The power-meter aperture (9.5 mm diameter) and the fiber core (100 µm diameter) subtend different areas:
 
-$$\frac{A_{\text{fib}}}{A_{\text{PM}}} = \frac{\pi (d_{\text{fib}}/2)^2}{\pi (d_{\text{PM}}/2)^2} \tag{7}$$
+<div align="center">
+
+$$\frac{A_{\text{fib}}}{A_{\text{PM}}} = \frac{\pi (d_{\text{fib}}/2)^2}{\pi (d_{\text{PM}}/2)^2} \qquad (7)$$
+
+</div>
 
 A distance correction accounts for the fiber entrance sitting at $r_{\text{fib}} = 44\,\text{cm}$ from the source, versus the power meter measured at $r_{\text{PM}} = 39.5\,\text{cm}$. Assuming inverse-square irradiance scaling:
 
-$$P_{\text{fib},f} = P_{\text{PM},f}^{\text{true}} \left(\frac{r_{\text{PM}}}{r_{\text{fib}}}\right)^2 \frac{A_{\text{fib}}}{A_{\text{PM}}} \tag{8}$$
+<div align="center">
+
+$$P_{\text{fib},f} = P_{\text{PM},f}^{\text{true}} \left(\frac{r_{\text{PM}}}{r_{\text{fib}}}\right)^2 \frac{A_{\text{fib}}}{A_{\text{PM}}} \qquad (8)$$
+
+</div>
 
 $P_{\text{fib},f}$ is the estimated total broadband power crossing fiber $f$'s core. No numerical-aperture correction is applied in the current configuration — the source is treated as effectively on-axis and centered, so the fiber's acceptance cone is not a limiting factor.
 
@@ -70,29 +99,53 @@ The power meter integrates the full broadband source power, but the camera recor
 
 The normalized source spectrum is interpolated onto the camera wavelength axis and multiplied by the modeled long-pass transmission $T_{\text{LP}}(\lambda)$:
 
-$$s_{\text{LP,unnorm}}(\lambda_j) = s(\lambda_j)\, T_{\text{LP}}(\lambda_j) \tag{9}$$
+<div align="center">
+
+$$s_{\text{LP,unnorm}}(\lambda_j) = s(\lambda_j)\, T_{\text{LP}}(\lambda_j) \qquad (9)$$
+
+</div>
 
 The current implementation uses an ideal step-function cutoff for $T_{\text{LP}}$, and additionally forces every calibrated quantity to zero below 660 nm regardless of what the transmission model would otherwise allow.
 
 **Transmitted power fraction** — the fraction of total broadband source power that falls within the camera's spectral range:
 
-$$F_{\text{LP}} = \sum_j s(\lambda_j)\, T_{\text{LP}}(\lambda_j)\, \Delta\lambda_j \tag{10}$$
+<div align="center">
+
+$$F_{\text{LP}} = \sum_j s(\lambda_j)\, T_{\text{LP}}(\lambda_j)\, \Delta\lambda_j \qquad (10)}$$
+
+</div>
 
 **Total transmitted power** for fiber $f$:
 
-$$P_{\text{LP},f} = P_{\text{fib},f} \cdot F_{\text{LP}} \tag{11}$$
+<div align="center">
+
+$$P_{\text{LP},f} = P_{\text{fib},f} \cdot F_{\text{LP}} \qquad (11)$$
+
+</div>
 
 **Renormalized transmitted spectral shape:**
 
-$$s_{\text{LP}}(\lambda_j) = \frac{s(\lambda_j)\, T_{\text{LP}}(\lambda_j)}{F_{\text{LP}}} \tag{12}$$
+<div align="center">
+
+$$s_{\text{LP}}(\lambda_j) = \frac{s(\lambda_j)\, T_{\text{LP}}(\lambda_j)}{F_{\text{LP}}} \qquad (12)$$
+
+</div>
 
 **Known spectral power density** incident on fiber $f$:
 
-$$P_{\lambda,f,j} = P_{\text{LP},f}\, s_{\text{LP}}(\lambda_j) \tag{13}$$
+<div align="center">
+
+$$P_{\lambda,f,j} = P_{\text{LP},f}\, s_{\text{LP}}(\lambda_j) \qquad (13)$$
+
+</div>
 
 which is algebraically equivalent to
 
-$$P_{\lambda,f,j} = P_{\text{fib},f}\, s(\lambda_j)\, T_{\text{LP}}(\lambda_j) \tag{14}$$
+<div align="center">
+
+$$P_{\lambda,f,j} = P_{\text{fib},f}\, s(\lambda_j)\, T_{\text{LP}}(\lambda_j) \qquad (14)$$
+
+</div>
 
 Equation (14) is the form actually evaluated — it avoids the intermediate normalize/renormalize round-trip of (9)–(13) while giving the same result.
 
@@ -100,11 +153,19 @@ Equation (14) is the form actually evaluated — it avoids the intermediate norm
 
 The pipeline does not construct a transmission curve (measured spectrum ÷ true spectrum). It instead computes the **inverse spectral response**: known incident spectral power divided by measured count rate.
 
-$$K_{f,j}^{\text{raw}} = \frac{P_{\lambda,f,j}}{\dot C_{f,j}} \tag{15}$$
+<div align="center">
+
+$$K_{f,j}^{\text{raw}} = \frac{P_{\lambda,f,j}}{\dot C_{f,j}} \qquad (15)$$
+
+</div>
 
 with units
 
-$$\left[K_{f,j}^{\text{raw}}\right] = \frac{\text{W}\,\text{nm}^{-1}}{\text{counts}\,\text{s}^{-1}} = \text{J}\,\text{nm}^{-1}\,\text{count}^{-1} \tag{16}$$
+<div align="center">
+
+$$\left[K_{f,j}^{\text{raw}}\right] = \frac{\text{W}\,\text{nm}^{-1}}{\text{counts}\,\text{s}^{-1}} = \text{J}\,\text{nm}^{-1}\,\text{count}^{-1} \qquad (16)$$
+
+</div>
 
 **Post-processing applied to the raw coefficients:**
 
@@ -116,11 +177,19 @@ $$\left[K_{f,j}^{\text{raw}}\right] = \frac{\text{W}\,\text{nm}^{-1}}{\text{coun
 
 For a shot with background-subtracted, vertically integrated counts $C_{f,j}^{\text{shot}}$, the calibrated spectral energy density is
 
-$$E_{\lambda,f,j} = C_{f,j}^{\text{shot}} \, K_{f,j} \tag{17}$$
+<div align="center">
+
+$$E_{\lambda,f,j} = C_{f,j}^{\text{shot}} \, K_{f,j} \qquad (17)$$
+
+</div>
 
 in J·nm⁻¹, and the energy in wavelength bin $j$ is
 
-$$E_{f,j}^{\text{bin}} = E_{\lambda,f,j}\, \Delta\lambda_j \tag{18}$$
+<div align="center">
+
+$$E_{f,j}^{\text{bin}} = E_{\lambda,f,j}\, \Delta\lambda_j \qquad (18)$$
+
+</div>
 
 in joules.
 
