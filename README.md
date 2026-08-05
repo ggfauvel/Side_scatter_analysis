@@ -19,7 +19,7 @@ The key conceptual point: the ND filter and every other unmodeled element of the
 
 The calibration image (source on) and background image (source off) are subtracted pixel-by-pixel:
 
-$$I_{\text{corr}}(x,y) = I_{\text{LED}}(x,y) - I_{\text{bg}}(x,y)$$
+$$I_{\text{corr}}(x,y) = I_{\text{LED}}(x,y) - I_{\text{bg}}(x,y)$$ $\tag{1}$
 
 Negative values from the subtraction are clipped to zero. The image is then rotated 90° counterclockwise to match the orientation used to define the fiber-reference traces.
 
